@@ -1,0 +1,39 @@
+$comment
+     A single point DFT calculation in with basis 
+     Mo   
+     lanl2dz 
+     **** set projection
+$end
+
+$molecule
+0  1
+C        -1.0016905845    0.0000169410    0.6861102447
+C         0.5167837063    0.0000649593    0.5441442865
+C        -1.7984784075   -0.0000631302   -0.6173342651
+Cl        1.1168112862   -1.4878904270   -0.2976735872
+Cl        1.1167228052    1.4879483389   -0.2978108417
+H        -1.2547338464    0.8810367667    1.2883387314
+H        -1.2546717132   -0.8809714359    1.2884097795
+H         1.0092900636    0.0001119619    1.5144718527
+H        -1.5762230852   -0.8857751786   -1.2181748724
+H        -2.8696278818   -0.0000909251   -0.3968310521
+H        -1.5762823426    0.8856121291   -1.2182502763
+$end
+
+$rem
+     JOBTYPE  PES_SCAN
+   UNRESTRICTED TRUE 
+    SYM_IGNORE  TRUE
+    GEOM_OPT_MAX_CYCLES 400 
+ SCF_MAX_CYCLES 400
+     METHOD   B3LYP
+     BASIS   6-31G**
+     PDB_PRINT 2
+     SCF_CONVERGENCE 6
+     THRESH 14
+     SCF_PRINT 1
+$end
+
+$scan 
+stre 2 5 1.2 2.2 0.1
+$end

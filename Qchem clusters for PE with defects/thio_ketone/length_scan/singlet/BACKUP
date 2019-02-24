@@ -1,0 +1,45 @@
+You are running Q-Chem version: 5.1.1
+
+#
+# job setting
+#
+local host:  hpc3448
+current dir: /staging/pv/kris658/forcefield_generation/length_scan/singlet
+input file:  CHOSx.in
+output file: CHOSx.out
+nprocs     : 1
+nthreads   : 16
+#
+# qchem installation setting
+#
+QC:          /usr/usc/qchem/5.1.1
+QCAUX:       /usr/usc/qchem/5.1.1/qcaux
+QCPROG:      /usr/usc/qchem/5.1.1/exe/qcprog.exe
+QCPROG_S:    /usr/usc/qchem/5.1.1/exe/qcprog.exe_s
+PARALLEL:    FALSE
+QCMPI:       
+#
+# qchem directory setting
+#
+qcrun:       CHOSx.save
+QCSCRATCH:   /staging/pv/kris658/.QCSCRATCH
+QCLOCALSCR:  
+QCTMPDIR:    /staging/pv/kris658/.QCSCRATCH
+QCFILEPREF:  /staging/pv/kris658/.QCSCRATCH/CHOSx.save
+QCSAVEDIR:   /staging/pv/kris658/.QCSCRATCH/CHOSx.save
+workdirs:    /staging/pv/kris658/.QCSCRATCH/CHOSx.save
+workdir0:    /staging/pv/kris658/.QCSCRATCH/CHOSx.save
+partmpdirs =  /staging/pv/kris658/.QCSCRATCH/CHOSx.save.0 
+#
+# parallel setting
+#
+QCRSH:           ssh
+QCMPI:           mpich
+QCMPIRUN:        /usr/usc/qchem/5.1.1/bin/mpi/mpirun_qchem
+QCMACHINEFILE:   hpc3448
+QCMACHINEFILE hpc3448 cannot be found
+
+#
+# env setting
+#
+exported envs:   QC QCAUX QCSCRATCH QCRUNNAME QCFILEPREF QCPROG QCPROG_S GUIFILE
