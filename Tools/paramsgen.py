@@ -81,13 +81,14 @@ def get_parameter_bounds(value):
     increment = INCREMENT_PERCENT*abs(value)
     min_bound = value - NUM_SEARCH_RANGE*increment
     max_bound = value + NUM_SEARCH_RANGE*increment
-    return increment, min_bound, max_bound
+    return increment, max_bound, min_bound
 
 class ParmGen:
 
     def __init__(self, ffield):
 
         self.ffield_name = ffield
+        self.param_name = open(ffield+'.param','w')
 
         self.line = 0
         self.num_section = 0
@@ -159,7 +160,12 @@ class ParmGen:
                 m = get_num_obj(d)
 
                 if m.is_matched():
-                    print(num_section, num_entry, num_data, get_parameter_bounds(m.get_value()), d)
+                    pvalues = get_parameter_bounds(m.get_value())
+                    num = [num_section, entry+1, num_data]
+                    comment = "%s, %3d-section, %3d-entry, %3d-param, %s"%(self.section_names[num_section], num[0],num[1],num[2],d)
+                    self.param_name.write("%4d %4d %4d %10.5f %10.5f %10.5f ! %s\n"%
+                        (num[0],num[1],num[2], pvalues[0], pvalues[1], pvalues[2], comment))
+                    print("%4d %4d %4d %10.5f %10.5f %10.5f ! %s"%(num[0],num[1],num[2], pvalues[0], pvalues[1], pvalues[2], comment))
 
             # reading extra lines. no need to handle the combination indices. 
             for num_line in range(extra_lines):
@@ -168,7 +174,12 @@ class ParmGen:
                     m = get_num_obj(d)
 
                     if m.is_matched():
-                        print(num_section, num_entry, num_data, get_parameter_bounds(m.get_value()), d)
+                        pvalues = get_parameter_bounds(m.get_value())
+                        num = [num_section, entry+1, num_data]
+                        comment = "%s, %3d-section, %3d-entry, %3d-param, %s"%(self.section_names[num_section], num[0],num[1],num[2],d)
+                        self.param_name.write("%4d %4d %4d %10.5f %10.5f %10.5f ! %s\n"%
+                            (num[0],num[1],num[2], pvalues[0], pvalues[1], pvalues[2], comment))
+                        print("%4d %4d %4d %10.5f %10.5f %10.5f ! %s"%(num_section, entry+1, num_data, pvalues[0], pvalues[1], pvalues[2], comment))
 
 
 if __name__== "__main__":
